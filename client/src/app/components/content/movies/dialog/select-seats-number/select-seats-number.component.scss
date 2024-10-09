@@ -1,0 +1,78 @@
+/* Center the SVG image within the div */
+.car-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.class-image {
+  max-width: 160px; /* Ensure the image scales responsively */
+  height: auto;
+}
+
+/* Style the seat selection radio buttons */
+.seat-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.seat-option {
+  margin: 0 8px; /* Adjust spacing between radio buttons */
+}
+
+.form-check-input {
+  display: none;
+}
+
+.form-check-label {
+  display: inline-block;
+  padding: 6px 10px; /* Decrease padding to reduce size */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
+  font-size: 14px; /* Decrease font size */
+}
+
+.form-check-input:checked + .form-check-label {
+  background-color: #E35E64;
+  color: white;
+}
+
+/* Full width button styling */
+.full-width-button {
+  width: 100%;
+  border-radius: 5px;
+}
+/* Media Queries for Smaller Devices */
+@media (max-width: 600px) {
+  .class-image {
+    max-width: 120px; /* Decrease SVG size */
+  }
+
+  .form-check-label {
+    padding: 4px 8px; /* Decrease padding */
+    font-size: 12px; /* Decrease font size */
+  }
+
+  .seat-option {
+    margin: 0 4px; /* Reduce space between radio buttons */
+  }
+}
+
+@media (max-width: 400px) {
+  .class-image {
+    max-width: 100px; /* Further decrease SVG size */
+  }
+
+  .form-check-label {
+    padding: 3px 6px; /* Further decrease padding */
+    font-size: 10px; /* Further decrease font size */
+  }
+
+  .seat-option {
+    margin: 0 2px; /* Further reduce space between radio buttons */
+  }
+}
+

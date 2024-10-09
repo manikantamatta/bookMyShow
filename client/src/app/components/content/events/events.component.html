@@ -1,0 +1,102 @@
+<div class="container-fluid content">
+  <div class="row">
+    <!-- Filters Section -->
+    <div class="col-md-4 col-lg-3 mb-4 offset-lg-1">
+      <h1 class="my-3 mx-2">Filters</h1>
+
+      <!-- Date Group Filter Dropdown -->
+      <div class="filter-container mb-3">
+        <div class="filter-header">
+          <span class="filter-title" (click)="toggleDropdown('DateGroup')">&#9662; DateGroup</span>
+          <div class="d-flex align-items-center ms-auto">
+            <button class="btn btn-link clear-button ms-2" (click)="clearFilter('DateGroup')">Clear</button>
+          </div>
+        </div>
+        <div class="filter-content" *ngIf="isDropdownOpen['DateGroup']">
+          <div *ngFor="let dateGroup of availableDateGroup">
+            <button
+              class="btn filter-btn"
+              [ngClass]="{'selected': selectedDateGroup.includes(getDateGroupValue(dateGroup))}"
+              (click)="onDateGroupChange(getDateGroupValue(dateGroup))">
+              {{ dateGroup }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Dropdown -->
+      <div class="filter-container mb-3">
+        <div class="filter-header">
+          <span class="filter-title" (click)="toggleDropdown('category')">&#9662; Category</span>
+          <div class="d-flex align-items-center ms-auto">
+            <button class="btn btn-link clear-button ms-2" (click)="clearFilter('category')">Clear</button>
+          </div>
+        </div>
+        <div class="filter-content" *ngIf="isDropdownOpen['category']">
+          <div *ngFor="let category of availableCategories">
+            <button 
+              class="btn filter-btn" 
+              [ngClass]="{'selected': selectedCategories.includes(category)}" 
+              (click)="onFilterChange('category', category)">
+              {{ category }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Filter Dropdown -->
+      <div class="filter-container mb-3">
+        <div class="filter-header">
+          <span class="filter-title" (click)="toggleDropdown('language')">&#9662; Language</span>
+          <div class="d-flex align-items-center ms-auto">
+            <button class="btn btn-link clear-button ms-2" (click)="clearFilter('language')">Clear</button>
+          </div>
+        </div>
+        <div class="filter-content" *ngIf="isDropdownOpen['language']">
+          <div *ngFor="let language of availableLanguages">
+            <button 
+              class="btn filter-btn" 
+              [ngClass]="{'selected': selectedLanguages.includes(language)}" 
+              (click)="onFilterChange('language', language)">
+              {{ language }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apply Filters Button -->
+      <button class="btn btn-custom w-100" (click)="applyFilters()">Apply Filters</button>
+    </div>
+
+    <!-- Events Section -->
+    <div class="col-md-8 col-lg-7">
+      <h1 class="my-3 mx-2">Events in {{ location }}</h1>
+
+      <!-- Events Display -->
+      <div class="row mb-3">
+        <div *ngIf="filteredEvents.length === 0" class="col-12">
+          <div class="bg-white text-center">
+            <h4>Sorry :(</h4>
+            <p>No Event matches your filter criteria.</p>
+            <button class="btn btn-link clear-button" (click)="resetAllFilters()">Reset All Filters</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 mb-4" *ngFor="let event of filteredEvents">
+          <div class="card h-100" (click)="fetchEventDetails(event)">
+            <img [src]="showImage(event.image_url)" class="card-img-top" [alt]="event.name"/>
+            <div class="card-body">
+              <h2 class="card-title fw-bold">{{ event.name }}</h2>
+              <p> {{ event.location }}</p>
+              <p>
+                <strong>Date:</strong> {{ event.date | date:'d MMMM, y' }}
+                <br />
+                <strong>Time:</strong> {{ event.time | date:'h:mm a' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

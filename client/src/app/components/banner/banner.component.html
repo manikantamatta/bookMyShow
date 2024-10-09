@@ -1,0 +1,79 @@
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-white" id="banner">
+    <div class="d-flex align-items-center w-100">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="">
+        <img class="navbar-logo" src="../../../assets/images/bookmyshow-logo-vector.svg" alt="BookMyShow Logo">
+      </a>
+      
+      <!-- Search Form (Hidden on small devices) -->
+      <form class="form-inline ml-auto d-none d-lg-flex align-items-center w-50" (click)="openSearch()">
+        <div class="input-group w-100">
+          <input class="form-control" type="search" placeholder="Search for Movies, Plays, Sports and Activities" aria-label="Search" readonly>
+        </div>
+      </form>
+      
+      <!-- Search Icon (Visible on small devices) -->
+      <div class="d-lg-none ml-auto search-icon" (click)="openSearch()">
+        <img src="../../../assets/images/magnifying-glass-solid.svg" alt="Search">
+      </div>
+      
+      <!-- Location, Sign In/Out Button, and Menu Icon -->
+      <div class="d-flex align-items-center side-right">
+        <div class="location-dropdown mx-2" (click)="promptForCity()">
+          {{ location || 'Select City' }}
+          <span class="dropdown-arrow mx-1">&#9662;</span>
+        </div>
+        <button *ngIf="!isLoggedIn" class="btn btn-primary btn-sm mx-2 d-none d-lg-inline" (click)="openAuthDialog()">Sign In</button>
+        <span *ngIf="isLoggedIn" [routerLink]="['/my-profile']" class="mx-2 d-none d-lg-inline"><i class="fa fa-user" aria-hidden="true"></i></span>
+        <!-- Menu Icon -->
+        <span class="navbar-toggler-icon mx-4" (click)="toggleOffcanvas($event)"></span>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Offcanvas Sidebar -->
+<div class="offcanvas" [class.show]="isOffcanvasOpen">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title mt-4" id="offcanvasExampleLabel">Hey!</h5>
+    <hr>
+    <button type="button" class="close" (click)="closeOffcanvas()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-unstyled" (click)="closeOffcanvas()">
+      <li class="mb-3" *ngIf="!isLoggedIn">
+        <a (click)="openAuthDialog()" class="text-decoration-none">Login</a>
+      </li>
+      <li class="mb-3">
+        <a [routerLink]="['/my-bookings']" 
+           class="text-decoration-none" 
+           [class.disabled]="!isLoggedIn"
+           [attr.aria-disabled]="!isLoggedIn ? 'true' : null">View Your Orders</a>
+      </li>
+      <li class="mb-3">
+        <a [routerLink]="['/my-profile']" 
+           class="text-decoration-none" 
+           [class.disabled]="!isLoggedIn"
+           [attr.aria-disabled]="!isLoggedIn ? 'true' : null">View Your Profile</a>
+      </li>
+      <li class="mb-3" *ngIf="isLoggedIn">
+        <a href="#!" (click)="signOut()" class="text-decoration-none">Sign Out</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+</div>
+
+  
+  <!-- Tab Navigation -->
+  <nav mat-tab-nav-bar class="custom-tab-nav-bar">
+    <div class="left-tabs">
+      <a mat-tab-link [routerLink]="['/movies']" routerLinkActive="mat-accent">Movies</a>
+      <a mat-tab-link [routerLink]="['/events']" routerLinkActive="mat-accent">Events</a>
+    </div>
+    <div class="right-tab">
+      <a mat-tab-link [routerLink]="['/list-shows']" routerLinkActive="mat-accent">List Your Shows</a>
+    </div>
+  </nav>
+  

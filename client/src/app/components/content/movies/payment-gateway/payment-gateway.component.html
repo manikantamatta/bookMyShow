@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <!-- Show Details -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4>Show Details</h4>
+        </div>
+        <div class="card-body">
+          <h2>{{ Movie.name }}</h2>
+          <p><strong>Start Time:</strong> {{ Show.start_time | date: 'short' }}</p>
+          <p><strong>End Time:</strong> {{ Show.end_time | date: 'short' }}</p>
+          <p><strong>Language:</strong> {{ Show.language }}</p>
+          <p><strong>Format:</strong> {{ Show.format }}</p>
+          <p><strong>Cinema Name:</strong> {{ cinema.name || 'Loading...' }}</p>
+          <p *ngIf="cinema.location">
+            <strong>Cinema Location:</strong> {{ cinema.location.house_no }}, {{ cinema.location.street }}, {{ cinema.location.area }}, {{ cinema.location.pincode }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Booking Details -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4>Booking Details</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let seat of Booking">
+              <strong>Seat Name:</strong> {{ seat.seatName }}
+            </li>
+            <li class="list-group-item" *ngIf="selectedItems.length > 0">
+              <strong>Food:</strong> {{ foodDetails }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Payment Info -->
+      <div class="card mb-2">
+        <div class="card-header">
+          <h4>Payment Information</h4>
+        </div>
+        <div class="card-body">
+          <p><strong>Total Amount:</strong> {{ TotalAmount | currency: 'INR' }}</p>
+          <button class="btn btn-primary w-100" (click)="makePayment()">Proceed to Payment</button>
+        </div>
+      </div>
+
+      <!-- Tabs for Food Services -->
+      <ul *ngIf="showFoodOptions" class="nav nav-tabs mb-4">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="selectedCategory === 'All'" (click)="selectCategory('All')">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="selectedCategory === 'Popcorn'" (click)="selectCategory('Popcorn')">Popcorn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="selectedCategory === 'Beverage'" (click)="selectCategory('Beverage')">Beverage</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="selectedCategory === 'Combo'" (click)="selectCategory('Combo')">Combo</a>
+        </li>
+      </ul>
+
+      <!-- Food Services -->
+      <div *ngIf="showFoodOptions" class="row">
+        <div class="col-md-4 mb-4" *ngFor="let item of filteredFoodServices">
+          <div class="card h-100">
+            <img [src]="item.image" class="card-img-top" alt="{{ item.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text" *ngIf="item.description">{{ item.description }}</p>
+              <p class="card-text"><strong>{{ item.price | currency: 'INR' }}</strong></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-danger" (click)="decreaseQuantity(item)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button class="btn btn-success" (click)="increaseQuantity(item)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

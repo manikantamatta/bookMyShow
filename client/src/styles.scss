@@ -1,0 +1,91 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$BookMyShowClient-primary: mat.define-palette(mat.$indigo-palette);
+$BookMyShowClient-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$BookMyShowClient-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$BookMyShowClient-theme: mat.define-light-theme((
+  color: (
+    primary: $BookMyShowClient-primary,
+    accent: $BookMyShowClient-accent,
+    warn: $BookMyShowClient-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($BookMyShowClient-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-custom, .btn-custom:hover, .btn-custom:active, .btn-custom:visited {
+  background-color: #E35E64;
+  color: white;
+  border: none;
+}
+.btn-custom:disabled {
+  background-color: #E35E64; /* Keep the same background color */
+  color: white; /* Keep the text color white */
+  opacity: 0.5; 
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.content{
+  background-color: #F5F5F5;
+}
+
+.mat-tooltip {
+  background-color: white !important;
+  color: black !important;
+  font-size: 14px; /* Adjust the font size as needed */
+  padding: 8px;    /* Adjust padding if necessary */
+  border-radius: 4px; /* Optional: to give rounded corners */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.mat-tooltip .mat-tooltip-arrow {
+  color: white !important;
+}
+
+.success-toast {
+  background-color: #4caf50; // Green
+  color: #fff;
+}
+
+.error-toast {
+  background-color: #f44336; // Red
+  color: #fff;
+}
+
+.info-toast {
+  background-color: #2196f3; // Blue
+  color: #fff;
+}
+.mat-snack-bar-container {
+  z-index: 10000;  // Ensure it's above other elements
+}
+
+

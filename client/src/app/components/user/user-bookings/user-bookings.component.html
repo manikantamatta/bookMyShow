@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="ordersTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="recent-tab" data-bs-toggle="tab" href="#recent-orders" role="tab" aria-controls="recent-orders" aria-selected="true">Recent Bookings</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="all-tab" data-bs-toggle="tab" href="#all-orders" role="tab" aria-controls="all-orders" aria-selected="false" (click)="fetchAllOrders()">All Orders</a>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content mt-3" id="ordersTabContent">
+    <!-- Recent Bookings Tab -->
+    <div class="tab-pane fade show active" id="recent-orders" role="tabpanel" aria-labelledby="recent-tab">
+      <div class="row">
+        <div class="col-md-4 mb-3" *ngFor="let order of recentOrders">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text"><strong>Movie Name:</strong> {{ order.entity_name }}</p>
+              <p class="card-text"><strong>Location:</strong> {{ order.location }}</p>
+              <p class="card-text"><strong>Show Time:</strong> {{ order.show_time | date: 'd MMMM, yyyy h:mm a' }}</p>
+              <p class="card-text"><strong>Amount:</strong> {{ order.amount | currency: 'INR' }}</p>
+              <p class="card-text"><strong>Seats:</strong> {{ order.seats.join(', ') }}</p>
+              <div *ngIf="order.food.length > 0">
+                <h6>Food Services:</h6>
+                <ul>
+                  <li *ngFor="let item of order.food">
+                    {{ item.quantity }} x {{ item.name }} ({{ item.price | currency: 'INR' }})
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Orders Tab -->
+    <div class="tab-pane fade" id="all-orders" role="tabpanel" aria-labelledby="all-tab">
+      <div *ngIf="isLoadingAllOrders" class="text-center mt-3">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="row" *ngIf="!isLoadingAllOrders && allOrders.length > 0">
+        <div class="col-md-4 mb-3" *ngFor="let order of allOrders">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text"><strong>Movie Name:</strong> {{ order.entity_name }}</p>
+              <p class="card-text"><strong>Location:</strong> {{ order.location }}</p>
+              <p class="card-text"><strong>Show Time:</strong> {{ order.show_time | date: 'd MMMM, yyyy h:mm a' }}</p>
+              <p class="card-text"><strong>Amount:</strong> {{ order.amount | currency: 'INR' }}</p>
+              <p class="card-text"><strong>Seats:</strong> {{ order.seats.join(', ') }}</p>
+              <div *ngIf="order.food.length > 0">
+                <h6>Food Services:</h6>
+                <ul>
+                  <li *ngFor="let item of order.food">
+                    {{ item.quantity }} x {{ item.name }} ({{ item.price | currency: 'INR' }})
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isLoadingAllOrders && allOrders.length === 0" class="text-center mt-3">
+        <p>No orders found.</p>
+      </div>
+    </div>
+  </div>
+</div>

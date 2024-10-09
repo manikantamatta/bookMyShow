@@ -1,0 +1,120 @@
+<div class="form-container my-2">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Movie Name</label>
+        <input id="name" formControlName="name" type="text" placeholder="Enter movie name" />
+        <div *ngIf="formControls['name'].touched && formControls['name'].invalid" class="error-message">
+          <small *ngIf="formControls['name'].errors?.['required']">Name is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" rows="3" placeholder="Enter movie description"></textarea>
+        <div *ngIf="formControls['description'].touched && formControls['description'].invalid" class="error-message">
+          <small *ngIf="formControls['description'].errors?.['required']">Description is required.</small>
+          <small *ngIf="formControls['description'].errors?.['minlength']">Description must be at least 10 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="duration">Duration (minutes)</label>
+        <input id="duration" formControlName="duration" type="number" placeholder="Enter duration" />
+        <div *ngIf="formControls['duration'].touched && formControls['duration'].invalid" class="error-message">
+          <small *ngIf="formControls['duration'].errors?.['required']">Duration is required.</small>
+          <small *ngIf="formControls['duration'].errors?.['min']">Duration must be at least 30 minutes.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Genre</mat-label>
+          <mat-select id="genre" formControlName="genre" multiple>
+            <mat-option disabled value="">-- Select Genres --</mat-option>
+            <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
+          </mat-select>
+          <mat-hint>Choose one or more genres</mat-hint>
+        </mat-form-field>
+        <div *ngIf="formControls['genre'].touched && formControls['genre'].invalid" class="error-message">
+          <small *ngIf="formControls['genre'].errors?.['required']">At least one genre is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Languages</mat-label>
+          <mat-select id="languages" formControlName="languages" multiple>
+            <mat-option disabled value="">-- Select Languages --</mat-option>
+            <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+          </mat-select>
+          <mat-hint>Select one or more languages</mat-hint>
+        </mat-form-field>
+        <div *ngIf="formControls['languages'].touched && formControls['languages'].invalid" class="error-message">
+          <small *ngIf="formControls['languages'].errors?.['required']">At least one language is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="imageUrl">Poster Image</label>
+        <input id="imageUrl" formControlName="imageUrl" type="file" placeholder="Upload image" (change)="onFileChange($event)" />
+        <div *ngIf="formControls['imageUrl'].touched && formControls['imageUrl'].invalid" class="error-message">
+          <small *ngIf="formControls['imageUrl'].errors?.['required']">Poster image is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Movie Rated</mat-label>
+          <mat-select id="movieRated" formControlName="movieRated">
+            <mat-option disabled value="">-- Select Movie Rating --</mat-option>
+            <mat-option *ngFor="let rating of movie_ratings" [value]="rating">{{ rating }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="formControls['movieRated'].touched && formControls['movieRated'].invalid" class="error-message">
+          <small *ngIf="formControls['movieRated'].errors?.['required']">Movie rating is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cast">Cast</label>
+        <input id="cast" formControlName="cast" type="text" placeholder="Enter cast names (comma separated)" />
+        <div *ngIf="formControls['cast'].touched && formControls['cast'].invalid" class="error-message">
+          <small *ngIf="formControls['cast'].errors?.['required']">Cast is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="crew">Crew</label>
+        <input id="crew" formControlName="crew" type="text" placeholder="Enter crew names (comma separated)" />
+        <div *ngIf="formControls['crew'].touched && formControls['crew'].invalid" class="error-message">
+          <small *ngIf="formControls['crew'].errors?.['required']">Crew is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Formats</mat-label>
+          <mat-select id="formats" formControlName="formats" multiple>
+            <mat-option disabled value="">-- Select Formats --</mat-option>
+            <mat-option *ngFor="let format of formats" [value]="format">{{ format }}</mat-option>
+          </mat-select>
+          <mat-hint>Select one or more formats</mat-hint>
+        </mat-form-field>
+        <div *ngIf="formControls['formats'].touched && formControls['formats'].invalid" class="error-message">
+          <small *ngIf="formControls['formats'].errors?.['required']">At least one format is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="releaseDate">Release Date</label>
+        <input id="releaseDate" formControlName="releaseDate" type="date" />
+        <div *ngIf="formControls['releaseDate'].touched && formControls['releaseDate'].invalid" class="error-message">
+          <small *ngIf="formControls['releaseDate'].errors?.['required']">Release date is required.</small>
+        </div>
+      </div>
+  
+      <button class="btn btn-custom w-100" type="submit" [disabled]="movieForm.invalid">Submit</button>
+    </form>
+  </div>
+
+  

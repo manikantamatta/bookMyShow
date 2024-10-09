@@ -1,0 +1,8 @@
+export const DateGroup=['Today','This Weekend','Next Week']
+export const Language=['English','Hindi','Tamil','Telugu','Kannada','Malayalam','Bengali','Gujarati','Marathi']
+export const Genre=['Action','Comedy','Drama','Thriller','Horror','Romance','Adventure','Sci-Fi','Fantasy','Mystery','Crime','Animation','Family','Biography','History','War','Documentary','Musical','Sport','Music','Western','Short','Adult','Reality-TV','Talk-Show','Game-Show','News','Film-Noir']
+export const Format=['2D','3D','IMAX','4DX','MX4D','Dolby Atmos','Dolby Vision','ScreenX','Dolby Cinema','PRIME','DTS:X','Auro 11.1','RealD 3D','Dolby 3D']
+export const Event_category=['Comedy','Music','Art','Drama']
+export const Sport_category=['Cricket','Running']
+export const Play_category=['Comedy','Music','Art','Drama']
+export const Activities_category=['Wellness','Historical','Food','Drama']

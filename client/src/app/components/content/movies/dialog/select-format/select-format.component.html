@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <!-- Format Selection -->
+    <div class="col-md-6">
+      <h1 class="text-center">Select Format</h1>
+      <div class="form-group">
+        <mat-radio-group [(ngModel)]="selectedFormat" class="d-flex flex-column">
+          <mat-radio-button *ngFor="let format of data.formats" [value]="format" class="mb-2">
+            {{ format }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <!-- Language Selection -->
+    <div class="col-md-6">
+      <h1 class="text-center">Select Language</h1>
+      <div class="form-group">
+        <mat-radio-group [(ngModel)]="selectedLanguage" class="d-flex flex-column">
+          <mat-radio-button *ngFor="let language of data.languages" [value]="language" class="mb-2">
+            {{ language }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog Actions -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-12 text-center">
+      <div mat-dialog-actions>
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button mat-button color="primary" [disabled]="!selectedFormat && !selectedLanguage" (click)="onConfirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

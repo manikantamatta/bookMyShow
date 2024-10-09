@@ -1,0 +1,77 @@
+/* admin.component.scss */
+
+.container-fluid {
+    padding: 0 15px;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  
+  .mat-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .column-header {
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+  }
+  
+  .column-cell {
+    text-align: center;
+    padding: 12px;
+  }
+  
+  /* Adjust column widths as necessary */
+  .mat-column-username {
+    width: 15%;
+  }
+  
+  .mat-column-name {
+    width: 25%;
+  }
+  
+  .mat-column-mov,
+  .mat-column-eve,
+  .mat-column-sho,
+  .mat-column-cin {
+    width: 10%;
+  }
+  
+  .mat-column-actions {
+    width: 15%;
+  }
+  
+  .mat-slide-toggle {
+    margin: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .column-header, .column-cell {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .mat-column-username,
+    .mat-column-name,
+    .mat-column-mov,
+    .mat-column-eve,
+    .mat-column-sho,
+    .mat-column-cin,
+    .mat-column-actions {
+      width: auto;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .column-header, .column-cell {
+      font-size: 12px;
+      padding: 6px;
+    }
+  }
+  

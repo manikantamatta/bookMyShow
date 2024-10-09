@@ -1,0 +1,11 @@
+<div class="container my-5 text-center">
+    <h2>Payment Details</h2>
+    <p><strong>Category:</strong> {{ paymentDetails.categoryName }}</p>
+    <p><strong>Number of Seats:</strong> {{ paymentDetails.numberOfSeats }}</p>
+    <p><strong>Show Time:</strong> {{ paymentDetails.showTime | date: 'short' }}</p>
+    <p><strong>Show Location:</strong> {{ paymentDetails.showLocation }}</p>
+    <p><strong>Total Amount:</strong> ₹{{ paymentDetails.totalAmount }}</p>
+  
+    <button class="btn btn-success" (click)="proceedToPay()">Proceed to Pay</button>
+  </div>
+  

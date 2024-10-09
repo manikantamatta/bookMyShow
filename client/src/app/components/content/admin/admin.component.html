@@ -1,0 +1,71 @@
+<div *ngIf="access"   class="container-fluid my-3">
+    <h2 class="my-4">Business Access Requests</h2>
+    
+    <div class="table-wrapper">
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        
+        <!-- Username Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Username </th>
+          <td mat-cell *matCellDef="let element" class="column-cell"> {{element.username}} </td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Name </th>
+          <td mat-cell *matCellDef="let element" class="column-cell"> {{element.name}} </td>
+        </ng-container>
+  
+        <!-- Mov Column -->
+        <ng-container matColumnDef="mov">
+          <th mat-header-cell *matHeaderCellDef class="column-header"> Mov </th>
+          <td mat-cell *matCellDef="let element" class="column-cell">
+            <mat-slide-toggle [checked]="hasAccess(element.access, 'MOV')" (change)="toggleAccess(element._id, 'MOV', $event)"></mat-slide-toggle>
+          </td>
+        </ng-container>
+  
+        <!-- Eve Column -->
+        <ng-container matColumnDef="eve">
+          <th mat-header-cell *matHeaderCellDef class="column-header"> Eve </th>
+          <td mat-cell *matCellDef="let element" class="column-cell">
+            <mat-slide-toggle [checked]="hasAccess(element.access, 'EVE')" (change)="toggleAccess(element._id, 'EVE', $event)"></mat-slide-toggle>
+          </td>
+        </ng-container>
+  
+        <!-- Sho Column -->
+        <ng-container matColumnDef="sho">
+          <th mat-header-cell *matHeaderCellDef class="column-header"> Sho </th>
+          <td mat-cell *matCellDef="let element" class="column-cell">
+            <mat-slide-toggle [checked]="hasAccess(element.access, 'SHO')" (change)="toggleAccess(element._id, 'SHO', $event)"></mat-slide-toggle>
+          </td>
+        </ng-container>
+  
+        <!-- Cin Column -->
+        <ng-container matColumnDef="cin">
+          <th mat-header-cell *matHeaderCellDef class="column-header"> Cin </th>
+          <td mat-cell *matCellDef="let element" class="column-cell">
+            <mat-slide-toggle [checked]="hasAccess(element.access, 'CIN')" (change)="toggleAccess(element._id, 'CIN', $event)"></mat-slide-toggle>
+          </td>
+        </ng-container>
+  
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="column-header"> Actions </th>
+          <td mat-cell *matCellDef="let element" class="column-cell">
+            <button mat-raised-button color="primary" (click)="updateAccess(element._id)">Update</button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
+    </div>
+    
+    <mat-paginator 
+      [length]="totalItems" 
+      [pageSize]="limit" 
+      [pageSizeOptions]="[5, 10, 20]" 
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  

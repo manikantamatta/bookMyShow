@@ -1,0 +1,54 @@
+/* Full-width footer */
+footer {
+    width: 100%;
+    background-color: #333338;
+}
+
+/* Style for the call to action section */
+section.mb-4 {
+    padding: 1rem;
+}
+
+.btn-primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(248, 68, 100);
+    border: 1px solid rgb(248, 68, 100);
+    font-size: 1.25rem;
+}
+
+/* Style for the call to action text */
+.font-weight-bold {
+    font-size: 1.25rem;
+}
+
+/* Remove underlines from links */
+.text-decoration-none {
+    text-decoration: none;
+}
+
+/* Style for the logos */
+.img-fluid {
+    max-width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.icon-div {
+    background-color: #404043;
+}
+
+.list-unstyled li a {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for headings */
+h5.text-uppercase {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+footer p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Age Restriction</h1>
+    <div mat-dialog-content>
+      <p>This movie is rated "A". You must be 18 or older to watch this movie. Are you sure you want to continue?</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button color="primary" (click)="onConfirm()">Continue</button>
+    </div>

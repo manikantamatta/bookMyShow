@@ -1,0 +1,68 @@
+.bg-image {
+  background-image: url('/assets/Caraosal/bg-movie.jpg'); /* Background image path */
+  background-size: cover; /* Ensures the background image covers the element */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents repeating the background image */
+  background-attachment: fixed; /* Keeps the background image fixed during scrolling */
+  color: white; /* Sets text color to white */
+}
+
+.movie-details-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-title {
+  font-size: 2rem; 
+  margin-bottom: 1rem; 
+}
+
+.info-box {
+  background-color: white; /* Black background */
+  color: black; /* White text */
+  padding: 10px; /* Padding inside the box */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.movie-description {
+  margin-top: 1rem; /* Adds margin above the description */
+}
+
+@media (max-width: 767px) {
+  .bg-image {
+    padding: 10px; /* Adjust padding on smaller screens */
+  }
+
+  .info-box {
+    padding: 8px; /* Adjust padding on smaller screens */
+  }
+}
+.rating-item {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+.rating-item i.fa-user-circle {
+  color: #007bff;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.review {
+  font-style: italic;
+}
+
+.mat-paginator {
+  margin: 1rem 0;
+}
+
+.bg-image {
+  background-image: url('/assets/Caraosal/bg-movie.jpg');
+  background-size: cover;
+  background-position: center;
+}
+

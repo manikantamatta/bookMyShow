@@ -1,0 +1,16 @@
+<mat-card class="auth-card">
+  <mat-card-title class="auth-card-title">
+    <span *ngIf="isLoginMode">Login</span>
+    <span *ngIf="!isLoginMode">Register</span>
+  </mat-card-title>
+  <mat-card-content class="auth-card-content">
+    <app-login *ngIf="isLoginMode"></app-login>
+    <app-register *ngIf="!isLoginMode"></app-register>
+  </mat-card-content>
+</mat-card>
+<div class="d-flex justify-content-end">
+  <button class="my-2 toggle-button" mat-raised-button (click)="toggleMode()">
+    {{ isLoginMode ? "Create an Account" : "Login" }}
+  </button>
+</div>
+

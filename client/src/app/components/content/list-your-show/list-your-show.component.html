@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h2 *ngIf="!isRegistering">Login</h2>
+        <h2 *ngIf="isRegistering">Register</h2>
+        <button class="btn btn-toggle" (click)="toggleForm()">
+          <span *ngIf="!isRegistering">Don't have an account? Register</span>
+          <span *ngIf="isRegistering">Already have an account? Login</span>
+        </button>
+      </div>
+      <form [formGroup]="loginForm" *ngIf="!isRegistering" (ngSubmit)="onLoginSubmit()">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input id="login-username" formControlName="username" class="form-control" type="text" placeholder="Enter username" />
+          <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+            Username is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input id="login-password" formControlName="password" class="form-control" type="password" placeholder="Enter password" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+            Password is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+  
+      <form [formGroup]="registerForm" *ngIf="isRegistering" (ngSubmit)="onRegisterSubmit()">
+        <div class="form-group">
+          <label for="register-name">Name</label>
+          <input id="register-name" formControlName="name" class="form-control" type="text" placeholder="Enter your name" />
+          <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
+            Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="register-username">Username</label>
+          <input id="register-username" formControlName="username" class="form-control" type="text" placeholder="Enter username" />
+          <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error">
+            Username is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input id="register-password" formControlName="password" class="form-control" type="password" placeholder="Enter password" />
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+            Password is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="register-confirm-password">Confirm Password</label>
+          <input id="register-confirm-password" formControlName="confirmPassword" class="form-control" type="password" placeholder="Confirm password" />
+          <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="error">
+            Password Do not Match
+            <div *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched" class="error">
+              Passwords must match
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </div>
+  

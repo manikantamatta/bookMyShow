@@ -1,0 +1,80 @@
+<div class="container-fluid my-2 mx-2">
+  <div class="movie-details mb-4">
+    <h2 class="h4">{{ movieName }}</h2>
+    <p class="text-muted mb-1">Language: {{ selectedLanguage }} | Genre: {{ genre }}</p>
+  </div>
+
+  <hr class="mb-3" />
+
+  <div class="controls mb-4">
+    <div class="row">
+      <div class="date-nav col-12 col-md-6 d-flex justify-content-start">
+        <button
+          *ngFor="let dateGroup of dateGroups; let i = index"
+          mat-button
+          [ngClass]="{ 'active': i === selectedDateIndex }"
+          (click)="selectDate(i)"
+          class="btn d-flex flex-column align-items-center py-1 px-2"
+        >
+          <span>{{ dateGroup.date | date: 'd' }} {{ dateGroup.date | date: 'MMM' }}</span>
+          <div class="mt-n1">{{ dateGroup.date | date: 'EEE' | slice: 0: 3 }}</div>
+        </button>
+      </div>
+
+      <div class="dropdowns col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap">
+        <div class="mb-2 col-12 col-md-5 col-lg-4">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Language</mat-label>
+            <mat-select [(value)]="selectedLanguage" (selectionChange)="onLanguageChange($event)">
+              <mat-option *ngFor="let language of languages" [value]="language">
+                {{ language }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="mb-2 col-12 col-md-5 col-lg-4">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Format</mat-label>
+            <mat-select [(value)]="format" (selectionChange)="onFormatChange($event)">
+              <mat-option *ngFor="let format of formats" [value]="format">
+                {{ format }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+<ng-container *ngIf="selectedDateGroup?.cinemas?.length!==0">
+  <div *ngFor="let cinema of selectedDateGroup?.cinemas" class="cinema-section mb-4 p-3 border rounded bg-light">
+    <div class="row">
+      <div class="cinema-header col-12 col-md-4">
+        <h3 class="mb-1 fw-bold">{{ cinema.cinema_name }}</h3>
+        <p class="text-muted mb-1">{{ cinema.location.street }}, {{ cinema.location.area }}</p>
+        <ng-container *ngIf="cinema.food_service">
+          <p class="mb-0"><mat-icon aria-label="Food Available">restaurant</mat-icon> Food Available</p>
+        </ng-container>
+      </div>
+
+      <div class="shows-container col-12 col-md-8 mt-2">
+        <div class="d-flex flex-wrap">
+          <button
+            *ngFor="let show of cinema.shows; let i = index"
+            mat-raised-button
+            class="btn btn-outline-primary me-2 mb-2"
+            [matTooltip]="getSeatInfo(show)"
+            matTooltipPosition="above"
+            aria-label="Button displaying show timings and seat information"
+            (click)="onShowSelect(show)"
+          >
+            {{ show.start_time | date: 'shortTime' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
+  <div *ngIf="selectedDateGroup?.cinemas?.length===0" class="text-center">
+    <p class="text-muted">.Sorry :( No shows available for the selected Language and Format. </p>
+</div>

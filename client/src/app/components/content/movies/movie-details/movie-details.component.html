@@ -1,0 +1,111 @@
+<!-- Main Container -->
+<div class="container movie-details-container mt-3" *ngIf="movie">
+  <!-- Background Image Section -->
+  <div class="row bg-image p-3 mb-4">
+    <!-- Main content area with offset for larger screens -->
+    <div class="col-sm-12 col-md-10 offset-md-1 text-white">
+      <div class="row">
+        <!-- Movie Poster -->
+        <div class="col-sm-12 col-md-4 mb-3">
+          <img [src]="showImage(movie.image_url)" alt="{{ movie.name }} Poster" class="img-fluid rounded shadow" />
+        </div>
+
+        <!-- Movie Information -->
+        <div class="col-sm-12 col-md-8">
+          <h1 class="movie-title">{{ movie.name }}</h1>
+          
+          <p class="info-box mb-3 w-25"><strong>{{ movie.languages.join(', ') }}</strong></p>
+          <p><strong>{{ movie.genre.join(', ') }}</strong></p>
+          <p><strong>{{ movie.formats.join(', ') }}</strong></p>
+
+          <div class="movie-details mb-3">
+            <ng-container *ngIf="isMovieReleased(); else upcomingMovie">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa fa-star text-warning me-2"></i>
+                <span>{{ movie.rating | number:'1.2-2' }} ({{ movie.ratedby }} votes)</span>
+                <span *ngIf="isLoggedIn">
+                  <button  *ngIf="userRating.rating===-1"class="btn btn-primary ms-3" (click)="rateNow()">Rate Now</button>
+                  <button  *ngIf="userRating.rating!==-1"class="btn btn-primary ms-3" >{{userRating.rating}}/10</button>
+              </span>
+              <span *ngIf="!isLoggedIn">
+                <button class="btn btn-primary ms-3" disabled="true">Login To Rate</button>
+            </span>
+              </div>
+            </ng-container>
+            <ng-template #upcomingMovie>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa fa-thumbs-up text-success me-2"></i>
+                <span>{{ movie.likes }} Interested</span>
+                <button *ngIf="!hasShownInterested" class="btn btn-primary ms-3" (click)="likeMovie()">Like To Show Interest</button>
+              </div>
+            </ng-template>
+            <p><strong>Release Date:</strong> {{ movie.release_date | date }}</p>
+          </div>
+
+          <!-- Book Tickets Button -->
+          <div class="mb-4">
+            <button class="btn btn-custom" (click)="bookTickets()">Book Tickets</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Movie Details Section (No Background Image) -->
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- Movie Description -->
+      <h2 class="mb-3">About the movie</h2>
+      <hr>
+      <p class="movie-description mb-4">{{ movie.description }}</p>
+      <p><strong>Cast:</strong> {{ movie.cast.join(', ') }}</p>
+      <p><strong>Crew:</strong> {{ movie.crew.join(', ') }}</p>
+    </div>
+  </div>
+
+  <!-- Ratings Section -->
+  <div *ngIf="isMovieReleased()" class="row mt-4">
+    <div class="col-sm-12">
+      <!-- Toggle Button for Ratings -->
+      <button class="btn btn-info mb-3" (click)="toggleRatings()">
+        {{ showRatings ? 'Hide Ratings' : 'Click to View Ratings' }}
+      </button>
+    </div>
+    <div class="col-sm-12" *ngIf="showRatings">
+      <mat-card>
+        <mat-card-content>
+          <div *ngFor="let rating of paginatedRatings" class="rating-item mb-3 d-flex align-items-start">
+            <i class="fa fa-user-circle fa-2x me-2"></i>
+            <div>
+              <div class="d-flex align-items-center mb-1">
+                <span class="fw-bold me-2">{{ rating.username }}</span>
+                <i class="fa fa-star text-warning me-1"></i>
+                <span>{{ rating.rating }}</span>
+              </div>
+              <p *ngIf="rating.review" class="mb-0">{{ rating.review }}</p>
+              <small class="text-muted">
+                <!-- Use timeago pipe to display relative time -->
+                {{ rating.createdAt | timeago }}
+              </small>
+            </div>
+          </div>
+
+          <!-- Pagination Controls -->
+          <mat-paginator
+            [pageSize]="ratingsPerPage"
+            [pageSizeOptions]="[5, 10, 20]"
+            [length]="totalRatingsCount"
+            (page)="onPageChange($event)">
+          </mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!movie" class="text-center">
+  <p>Loading movie details...</p>
+</div>
+
+

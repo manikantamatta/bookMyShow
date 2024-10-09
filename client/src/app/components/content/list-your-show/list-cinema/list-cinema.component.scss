@@ -1,0 +1,81 @@
+.form-container {
+  width: 100%;
+  max-width: 900px; /* Adjust based on your design */
+  margin: auto;
+  padding: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-outline {
+  border-radius: 4px;
+}
+
+button {
+  margin: 5px;
+}
+
+.add-remove-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+/* Button colors */
+button.add-seat {
+  background-color: #4CAF50; /* Green for add buttons */
+}
+
+button.remove-seat {
+  background-color: #f44336; /* Red for remove buttons */
+}
+
+button.add-seating-arrangement {
+  background-color: #2196F3; /* Blue for add seating arrangement */
+}
+
+button.remove-seating-arrangement {
+  background-color: #FFC107; /* Yellow for remove seating arrangement */
+}
+
+/* Ensure buttons align well with form fields */
+mat-form-field {
+  margin-bottom: 16px;
+}
+.add-seat-btn {
+  background-color: #4caf50; /* Green for Add Seat */
+  color: white;
+}
+
+.remove-seat-btn {
+  background-color: #f44336; /* Red for Remove Seat */
+  color: white;
+}
+
+.add-status-btn {
+  background-color: #2196f3; /* Blue for Add Status */
+  color: white;
+}
+
+.remove-status-btn {
+  background-color: #e91e63; /* Pink for Remove Status */
+  color: white;
+}
+
+.add-arrangement-btn {
+  background-color: #009688; /* Teal for Add Seating Arrangement */
+  color: white;
+}
+
+.remove-arrangement-btn {
+  background-color: #ff5722; /* Deep Orange for Remove Seating Arrangement */
+  color: white;
+}
+

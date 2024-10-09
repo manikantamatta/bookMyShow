@@ -1,0 +1,45 @@
+<!-- Main Container -->
+<div class="container event-details-container mt-3" *ngIf="event">
+  <!-- Background Image Section -->
+  <div class="row bg-image p-3 mb-4">
+    <!-- Main content area with offset for larger screens -->
+    <div class="col-sm-12 col-md-10 offset-md-1 text-white">
+      <div class="row">
+        <!-- Event Poster -->
+        <div class="col-sm-12 col-md-4 mb-3">
+          <img [src]="showImage(event.image_url)" alt="{{ event.name }} Poster" class="img-fluid rounded shadow" />
+        </div>
+
+        <!-- Event Information -->
+        <div class="col-sm-12 col-md-8">
+          <h1 class="event-title">{{ event.name }}</h1>
+
+          <p class="info-box mb-3 w-100"><strong>Location:</strong> {{ event.location }}</p>
+
+          <!-- Rectangular Tags for Date and Time -->
+          <div class="event-date-time mb-3">
+            <span class="event-tag">{{ event.date | date:'dd MMM yyyy' }}</span>
+            <span class="event-tag">{{ event.time | date: 'shortTime'}}</span>
+          </div>
+
+          <p class="event-description mb-4">{{ event.description }}</p>
+          <p><strong>Duration:</strong> {{ event.duration }} minutes</p>
+
+          <!-- Interested Count -->
+          <p><strong>Interested:</strong> {{ event.interested }} people</p>
+          <button *ngIf="!hasShownInterested" class="btn btn-primary ms-3" (click)="likeMovie()">Like To Show Interest</button>
+
+          <!-- Book Tickets Button -->
+          <div class="mb-4">
+            <button class="btn btn-custom" (click)="bookTickets()">Book Tickets</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: Loading indicator or message -->
+  <div *ngIf="!event" class="text-center">
+    <p>Loading event details...</p>
+  </div>
+</div>

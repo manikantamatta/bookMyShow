@@ -1,0 +1,20 @@
+<h1 mat-dialog-title class="text-align center">How Many Seats?</h1>
+<div mat-dialog-content>
+  <div class="car-image">
+    <!-- Display images based on the selectedSeats value -->
+    <img *ngIf="selectedSeats < 3" src="../../../../../../assets/images/bicycle-svgrepo-com.svg" class="class-image" alt="Image">
+    <img *ngIf="selectedSeats >= 3 && selectedSeats < 6" src="../../../../../../assets/images/car-svgrepo-com.svg"class="class-image" alt="Image">
+    <img *ngIf="selectedSeats >= 6" src="../../../../../../assets/images/bus-svgrepo-com.svg" class="class-image" alt="Image">
+  </div>
+  <div class="seat-selection">
+    <div *ngFor="let count of seatOptions" class="seat-option">
+      <input class="form-check-input" type="radio" name="seatOptions" id="seat{{count}}" [value]="count" [(ngModel)]="selectedSeats">
+      <label class="form-check-label" for="seat{{count}}">
+        {{count}}
+      </label>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="btn btn-custom full-width-button" (click)="selectSeats()">Select Seats</button>
+</div>

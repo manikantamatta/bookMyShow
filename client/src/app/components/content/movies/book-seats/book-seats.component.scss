@@ -1,0 +1,217 @@
+.book-seats-container {
+  .header {
+    text-align: left;
+    margin-bottom: 20px;
+
+    .show-title {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .location {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
+  .show-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0;
+      font-size: 16px;
+      margin-right: 20px; // Space between text elements
+      display: flex;
+      align-items: center;
+
+    }
+
+    .time-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background-color: #f0f0f0;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+
+    .language-tag {
+      display: inline;
+      margin-left: 5px;
+    }
+
+    button {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+  }
+
+  .seat-availability-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .seat-selection-container {
+    .seats-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .seat-category {
+        width: 100%;
+        max-width: 800px;
+  
+        .seat-category-header {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+  
+        .seats-row {
+          width: 100%;
+          max-width: 800px;
+          overflow-x: auto; // Enable horizontal scroll on small screens
+  
+          .row-content {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; // Reduce space between row content and seats
+  
+            .row-label {
+              font-size: 16px;
+              margin-right: 50px; // Decrease space between row label and seats
+            }
+  
+            .seat-row-content {
+              display: flex;
+              flex-wrap: nowrap; // Prevent wrapping
+              overflow-x: auto;
+            }
+  
+            .seat-wrapper {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              width: 30px;
+              height: 30px;
+              margin: 2px;
+              cursor: pointer;
+  
+              &.selected {
+                background-color: green;
+                color: white;
+              }
+  
+              &.unavailable {
+                background-color: grey;
+                color: white;
+              }
+  
+              &.space {
+                width: 10px;
+                background-color: transparent;
+                margin-right: 5px;
+              }
+  
+              span {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .screen-message {
+    text-align: center;
+    font-size: 16px;
+    margin: 20px 0;
+    color: #666;
+  }
+
+  .sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; // Ensure it stays on top of other content
+
+    .full-width-button {
+      display: inline-block;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px 0;
+      font-size: 18px;
+    }
+
+    .payable-amount {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .seat-wrapper {
+      width: 20px;
+      height: 20px;
+      margin: 1px;
+    }
+
+    .seat-row-content {
+      flex-direction: row; // Stack seats horizontally on mobile
+    }
+
+    .sticky-footer {
+      padding: 10px 0;
+
+      .full-width-button {
+        font-size: 16px;
+      }
+    }
+  }
+}
+.seat-legend-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.seat-legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.seat-legend-box {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+  margin-right: 8px;
+}
+
+.available {
+  background-color: white;
+  border: 1px solid green;
+}
+
+.selected {
+  background-color: green;
+  border: 1px solid green;
+}
+
+.unavailable {
+  background-color: grey;
+}
+

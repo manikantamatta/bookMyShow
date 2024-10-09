@@ -1,0 +1,262 @@
+
+.navbar {
+  height: 11vh;
+}
+
+.disabled {
+  pointer-events: none;
+  color: #6c757d; 
+}
+
+.navbar-logo {
+  margin-left: 7vh;
+  margin-right: 1vh;
+  width: 130px;
+  height: 120px;
+}
+
+
+@media (min-width: 992px) {
+  .side-right {
+    margin-left: 20vw; /* Align items more to the right */
+    margin-right: 2vw;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .navbar {
+    height: 15vh;
+  }
+  .navbar-logo {
+    margin-left: 5vh; 
+    margin-right: 1vh;
+    width: 100px; 
+    height: 90px; 
+  }
+
+  .side-right {
+    margin-left: auto; 
+    margin-right: 2vw; 
+  }
+}
+
+/* Adjustments for small devices (mobile) */
+@media (max-width: 768px) {
+  .navbar-logo {
+    margin-left: 3vh; 
+    margin-right: 1vh;
+    width: 80px; 
+    height: 50px; 
+  }
+  .navbar{
+    height:15vh;
+  }
+
+  .form-inline {
+    display: none; /* Hide the search bar on small screens */
+  }
+
+  .search-icon {
+    display: inline-block;
+    margin-left: auto; /* Align search icon to the right */
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn-primary {
+    display: none; /* Hide sign-in button on small screens */
+  }
+
+  .side-right {
+    margin-left: 0; /* Align items correctly */
+    margin-right: 2vh; /* Space on the right */
+    display: flex; /* Ensure flex display */
+    align-items: center; /* Vertically align items */
+  }
+}
+
+/* Further adjustments for very small devices */
+@media (max-width: 576px) {
+  .navbar-logo {
+    width: 60px; 
+    height: 50px;
+    margin-left: 2vh; 
+    margin-right: 1vh;
+  }
+
+  .search-icon {
+    width: 25px; 
+    height: 25px;
+  }
+}
+
+/* Ensure the search icon is inside the search bar and aligned correctly */
+.input-group {
+  width: 100%;
+}
+
+.form-inline {
+  width: 50%; /* Adjust width as needed */
+}
+
+/* Style for the search input */
+.form-control {
+  padding-left: 40px;
+  background: url('../../../assets/images/magnifying-glass-solid.svg') no-repeat 10px center; /* Position the icon */
+  background-size: 12px; 
+  font-size: 14px;
+  border-radius: 0;
+}
+
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+.location-text {
+  margin-right: 1rem; /* Space between location and sign-in button */
+}
+
+.btn-primary {
+  color: rgb(255, 255, 255);
+  background-color: rgb(248, 68, 100);
+  font-size: 12px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid rgb(248, 68, 100);
+  height: 25px;
+  width: 70px;
+}
+
+.location-dropdown {
+  display: flex;
+  align-items: center;
+  width: 100px; /* Adjust width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem; /* Adjust padding for small button */
+}
+
+/* Offcanvas adjustments */
+.offcanvas {
+  width: 360px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  position: fixed;
+  top: 0;
+  right: -360px;  
+  transition: right 0.3s ease;  
+}
+
+.offcanvas.show {
+  right: 0;  
+}
+
+.offcanvas-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(248, 68, 100);
+}
+
+.offcanvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.offcanvas-body {
+  padding: 1rem;
+}
+
+.close {
+  font-size: 1.5rem;
+}
+
+ul.list-unstyled li {
+  margin-bottom: 1rem; /* Space between list items */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-tab-nav-bar {
+  background-color: #F5F5F5; /* Background color */
+  display: flex; /* Flex container */
+  padding: 0 1rem; /* Optional: add some padding */
+}
+
+.left-tabs {
+  display: flex; /* Display tabs in a row */
+}
+
+.right-tab {
+  margin-left: auto; /* Pushes the right tab to the right */
+}
+
+mat-tab-link {
+  font-size: 0.875rem; /* Decrease font size */
+}
+
+.custom-dialog-container {
+  position: absolute;
+  padding: 16px; 
+  top: -50px;
+}
+
+/* styles.scss or global styles file */
+.mat-dialog-container {
+  width: 100vw !important; /* Override default width */
+  height: 100vh !important; /* Override default height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent background color change on click */
+.form-inline .form-control:focus {
+  border-color: none;
+}
+.btn-signout{
+  background-color: aqua;
+}
+.search-icon {
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .search-icon {
+    position: absolute;
+    right: 15px; /* Adjust as needed */
+    top: 15px; /* Adjust as needed */
+  }
+}

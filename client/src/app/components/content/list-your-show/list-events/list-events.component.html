@@ -1,0 +1,156 @@
+<div class="form-container my-2">
+    <form [formGroup]="eventForm" (ngSubmit)="submit(eventForm)">
+      <mat-horizontal-stepper linear>
+        
+        <!-- Step 1: Event Details -->
+        <mat-step label="Event Details">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Enter event name">
+                <mat-error *ngIf="eventForm.get('name')?.hasError('required')">Name is required.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Category</mat-label>
+                <input matInput formControlName="category" placeholder="Enter category">
+                <mat-error *ngIf="eventForm.get('category')?.hasError('required')">Category is required.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Duration (minutes)</mat-label>
+                <input matInput type="number" formControlName="duration" placeholder="Enter duration">
+                <mat-error *ngIf="eventForm.get('duration')?.hasError('required')">Duration is required.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" placeholder="Enter city">
+                <mat-error *ngIf="eventForm.get('city')?.hasError('required')">City is required.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location" placeholder="Enter location">
+                <mat-error *ngIf="eventForm.get('location')?.hasError('required')">Location is required.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Enter date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="eventForm.get('date')?.hasError('required')">Date is required.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Time</mat-label>
+                <input matInput type="time" formControlName="time" placeholder="Enter time">
+                <mat-error *ngIf="eventForm.get('time')?.hasError('required')">Time is required.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" placeholder="Enter description"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="imageUrl">Poster Image</label>
+            <input 
+              id="imageUrl" 
+              type="file" 
+              (change)="onFileSelect($event)"
+            />
+            <div 
+              *ngIf="eventForm.get('imageUrl')?.touched && eventForm.get('imageUrl')?.invalid" 
+              class="error-message"
+            >
+              <small *ngIf="eventForm.get('imageUrl')?.errors?.['required']">Poster image is required.</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Languages</mat-label>
+                <mat-select formControlName="languages" multiple>
+                  <mat-option *ngFor="let language of availableLanguages" [value]="language">
+                    {{ language }}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Select one or more languages</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-step>
+  
+        <!-- Step 2: Ticket Information -->
+        <mat-step label="Ticket Information">
+          <div formArrayName="ticketInfo">
+            <div *ngFor="let ticket of ticketInfo.controls; let i = index" [formGroupName]="i" class="row">
+              <div class="col-md-4 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Type</mat-label>
+                  <input matInput formControlName="type" placeholder="Enter ticket type">
+                  <mat-error *ngIf="ticket.get('type')?.hasError('required')">Type is required.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Price</mat-label>
+                  <input matInput type="number" formControlName="price" placeholder="Enter price">
+                  <mat-error *ngIf="ticket.get('price')?.hasError('required')">Price is required.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Quantity</mat-label>
+                  <input matInput type="number" formControlName="quantity" placeholder="Enter quantity">
+                  <mat-error *ngIf="ticket.get('quantity')?.hasError('required')">Quantity is required.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12 mb-3">
+                <button mat-raised-button color="warn" (click)="removeTicketInfo(i)">Remove Ticket</button>
+              </div>
+            </div>
+            <button mat-raised-button color="primary" (click)="addTicketInfo()">Add Ticket Info</button>
+          </div>
+        </mat-step>
+  
+        <!-- Step 3: Review and Submit -->
+        <mat-step label="Review and Submit">
+          <div *ngIf="eventForm.valid">
+            <h3>Review Your Event</h3>
+            <pre>{{ eventForm.value | json }}</pre>
+          </div>
+          <div *ngIf="!eventForm.valid">
+            <p>Please complete all required fields before submitting.</p>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+  

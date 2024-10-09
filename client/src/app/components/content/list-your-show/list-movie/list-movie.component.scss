@@ -1,0 +1,36 @@
+.form-container {
+    width: 100%;
+    max-width: 600px; /* Adjust based on your design */
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-form-field-outline {
+    border-radius: 4px;
+  }
+  .error-message {
+    color: red;
+    font-size: 12px;
+  }
+  
+  

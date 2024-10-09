@@ -1,0 +1,137 @@
+.content {
+    background-color: #F5F5F5;
+}
+
+.filter-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    padding: 10px;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+}
+
+.filter-title {
+    color: #E35E64; /* Change text color to #E35E64 */
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.dropdown-icon {
+    cursor: pointer;
+}
+
+.clear-button {
+    color: #E35E64; /* Change clear button color to #E35E64 */
+    text-decoration: none; /* Remove underline */
+}
+
+.filter-content {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Adds spacing between buttons */
+}
+
+.filter-btn {
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    color: #E35E64; /* Change button text color to #E35E64 */
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px; /* Reduce font size */
+}
+
+.filter-btn.selected {
+    background-color: #E35E64;
+    color: #fff;
+}
+
+.card-img-top {
+    max-width: 100%; /* Ensure the image does not exceed the card's width */
+    height: 200px; /* Maintain aspect ratio */
+    object-fit: contain;
+    background-color: white;
+}
+
+.see-upcoming-button {
+    color: #E35E64; /* Change button text color to #E35E64 */
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove border */
+}
+card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    margin-bottom: 10px;
+  }
+  
+  .movie-certification {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .languages {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .rating-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .rating-info span {
+    font-weight: bold;
+  }
+  
+  .card-body p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-img-top {
+      height: 150px;
+    }
+  
+    .card-body {
+      padding: 10px;
+    }
+  
+    .card-title {
+      font-size: 16px;
+    }
+  
+    .movie-certification,
+    .languages,
+    .rating-info {
+      font-size: 12px;
+    }
+  }

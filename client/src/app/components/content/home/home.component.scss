@@ -1,0 +1,120 @@
+/* General Container and Section Title Styles */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Movie and Review Card Styles */
+.movie-review-card {
+  background-color: #F5F5F5; /* Light grey background for the entire card */
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  padding: 15px; /* Padding inside the card */
+}
+
+.movie-review-card:hover {
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card {
+  background-color: transparent; /* Transparent to show movie-review-card's background */
+  border: none;
+  max-height: 400px; /* Consistent height */
+}
+
+.review-card {
+  background-color: transparent; /* Transparent to show movie-review-card's background */
+  border: none;
+  max-height: 400px; /* Consistent height */
+}
+
+/* Image Styles */
+.card-img-top {
+  max-width: 100%;
+  height: 250px;
+  object-fit: contain;
+  background-color: white;
+  border-bottom: 1px solid #ddd; /* Separating line under the image */
+}
+
+/* Review Title Styles */
+.review-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+/* Card Content Styles */
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.movie-certification,
+.rating-info {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.rating-item {
+  border-bottom: 1px solid #dee2e6; /* Divider between reviews */
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 5px; /* Rounded corners for individual reviews */
+}
+
+.rating-item:last-child {
+  border-bottom: none; /* Remove the bottom border for the last item */
+}
+
+.rating-item i.fa-user-circle {
+  color: #007bff;
+}
+
+.review {
+  font-style: italic;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 120px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .movie-certification,
+  .rating-info {
+    font-size: 12px;
+  }
+
+  .review-title {
+    font-size: 16px; /* Adjusted font size for smaller screens */
+  }
+
+  .movie-review-card {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+}

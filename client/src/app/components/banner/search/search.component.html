@@ -1,0 +1,53 @@
+<div class="search-container">
+  <div class="search-dialog">
+    <form class="search-form">
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Search for Movies, Plays, Events and More.."
+          aria-label="Search"
+          (input)="onSearch($event)"
+        />
+      </div>
+    </form>
+  
+    <!-- Display tabs only if there is data for at least one category -->
+    <mat-tab-group class="tabs" *ngIf="hasData">
+      <mat-tab *ngIf="arrMovies.length > 0" label="Movies">
+        <div class="search-results">
+          <ul class="results-list">
+            <li *ngFor="let movie of arrMovies" class="result-item" (click)="navigateToDetails('movie', movie._id)">
+              {{ movie.name }}
+            </li>
+          </ul>
+        </div>
+      </mat-tab>
+  
+      <mat-tab *ngIf="arrCinemas.length > 0" label="Cinemas">
+        <div class="search-results">
+          <ul class="results-list">
+            <li *ngFor="let cinema of arrCinemas" class="result-item" (click)="navigateToDetails('cinema', cinema._id)">
+              {{ cinema.name }}
+            </li>
+          </ul>
+        </div>
+      </mat-tab>
+  
+      <mat-tab *ngIf="arrEvents.length > 0" label="Events">
+        <div class="search-results">
+          <ul class="results-list">
+            <li *ngFor="let event of arrEvents" class="result-item" (click)="navigateToDetails('event', event._id)">
+              {{ event.name }}
+            </li>
+          </ul>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  
+    <!-- Display a message if no results are found and a search has been performed -->
+    <div *ngIf="!hasData && searchQuery.length > 1 && !loading" class="no-results-message">
+      Sorry, nothing matches your search.
+    </div>
+  </div>
+</div>

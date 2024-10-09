@@ -1,0 +1,110 @@
+<div class="form-container my-2">
+  <form [formGroup]="cinemaForm" (ngSubmit)="submit(cinemaForm)">
+    <mat-horizontal-stepper linear>
+      <!-- Step 1: Initial Information -->
+      <mat-step label="Initial Information">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter cinema name">
+          <mat-error *ngIf="cinemaForm.get('name')?.hasError('required')">Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" placeholder="Enter city">
+          <mat-error *ngIf="cinemaForm.get('city')?.hasError('required')">City is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>House No</mat-label>
+          <input matInput formControlName="house_no" placeholder="Enter house number">
+          <mat-error *ngIf="cinemaForm.get('house_no')?.hasError('required')">House No is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Street</mat-label>
+          <input matInput formControlName="street" placeholder="Enter street">
+          <mat-error *ngIf="cinemaForm.get('street')?.hasError('required')">Street is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Area</mat-label>
+          <input matInput formControlName="area" placeholder="Enter area">
+          <mat-error *ngIf="cinemaForm.get('area')?.hasError('required')">Area is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Pincode</mat-label>
+          <input matInput formControlName="pincode" placeholder="Enter pincode">
+          <mat-error *ngIf="cinemaForm.get('pincode')?.hasError('required')">Pincode is required.</mat-error>
+          <mat-error *ngIf="cinemaForm.get('pincode')?.hasError('pattern')">Pincode must be a 6-digit number.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Number of Screens</mat-label>
+          <input matInput type="number" formControlName="screens" placeholder="Enter number of screens">
+          <mat-error *ngIf="cinemaForm.get('screens')?.hasError('required')">Number of screens is required.</mat-error>
+          <mat-error *ngIf="cinemaForm.get('screens')?.hasError('min')">Number of screens must be at least 1.</mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="food_service">Food Service Available</mat-checkbox>
+      </mat-step>
+
+   <!-- Step 2: Seating Arrangement -->
+      <mat-step label="Seating Arrangement">
+        <div formArrayName="seating_arrangement">
+          <mat-horizontal-stepper linear>
+            <mat-step *ngFor="let arrangement of seating_arrangement.controls; let i = index" [label]="'Seating Arrangement ' + (i + 1)">
+              <div [formGroupName]="i">
+                <mat-form-field appearance="fill">
+                  <mat-label>Screens No</mat-label>
+                  <input matInput formControlName="screens_no" placeholder="Enter screen numbers (comma separated)">
+                  <mat-error *ngIf="arrangement.get('screens_no')?.hasError('required')">Screens No is required.</mat-error>
+                </mat-form-field>
+
+                <div formArrayName="seats">
+                  <div *ngFor="let seat of getSeats(arrangement).controls; let j = index" [formGroupName]="j">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Type</mat-label>
+                      <input matInput formControlName="type" placeholder="Enter seat type">
+                      <mat-error *ngIf="seat.get('type')?.hasError('required')">Seat type is required.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Price</mat-label>
+                      <input matInput formControlName="price" placeholder="Enter price">
+                      <mat-error *ngIf="seat.get('price')?.hasError('required')">Price is required.</mat-error>
+                      <mat-error *ngIf="seat.get('price')?.hasError('pattern')">Enter a valid price.</mat-error>
+                    </mat-form-field>
+
+                    <div formArrayName="status">
+                      <div *ngFor="let status of getStatus(seat).controls; let k = index">
+                        <mat-form-field appearance="fill">
+                          <mat-label>Status {{ k + 1 }}</mat-label>
+                          <input matInput [formControlName]="k" placeholder="Enter status">
+                          <mat-error *ngIf="status?.hasError('required')">Status is required.</mat-error>
+                        </mat-form-field>
+                        <button mat-raised-button color="warn" class="remove-status-btn" (click)="removeStatus(seat, k)">Remove Status</button>
+                      </div>
+                      <button mat-raised-button color="primary" class="add-status-btn" (click)="addStatus(seat)">Add Status</button>
+                    </div>
+                    <button mat-raised-button color="warn" class="remove-seat-btn" (click)="removeSeat(arrangement, j)">Remove Seat</button>
+                  </div>
+                  <button mat-raised-button color="primary" class="add-seat-btn" (click)="addSeat(arrangement)">Add Seat</button>
+                </div>
+                <button mat-raised-button color="warn" class="remove-arrangement-btn" (click)="removeSeatingArrangement(i)">Remove Seating Arrangement</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+
+          <button mat-raised-button color="primary" class="add-arrangement-btn" (click)="addNewSeatingArrangement()">Add Seating Arrangement</button>
+        </div>
+      </mat-step>
+
+      <!-- Step 3: Review and Submit -->
+      <mat-step label="Review and Submit">
+        <div *ngIf="cinemaForm.valid">
+          <h3>Review Your Information</h3>
+          <pre>{{ cinemaForm.value | json }}</pre>
+        </div>
+        <div *ngIf="!cinemaForm.valid">
+          <p>Please complete all required fields before submitting.</p>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

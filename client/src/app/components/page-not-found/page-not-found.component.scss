@@ -1,0 +1,97 @@
+$yellow: #ffdb59;
+$blue: #4868f4;
+$red: #f05555;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+#container {
+  width: 90%;
+  max-width: 550px;
+  margin: 90px auto;
+  padding: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f7f7f7;
+  text-align: center; /* Center align text */
+}
+
+#container * {
+  margin-bottom: 50px;
+  color: #383737;
+}
+
+#container h1 {
+  display: inline-block;
+  font-size: 10vw; /* Use vw to make it responsive */
+  line-height: 1;
+  letter-spacing: .2em;
+  text-shadow: 8px -3px 0 rgba($red, .6), 
+               -10px 5px 0 rgba($blue, .6), 
+               9px 7px 0 rgba($yellow, .6);
+  transition: all .2s ease;
+}
+
+#container h1:hover {
+  text-shadow: 4px -1px 0 rgba($red, .6), 
+               -5px 2px 0 rgba($blue, .6), 
+               6px 3px 0 rgba($yellow, .6);
+  transition: all .2s ease;
+}
+
+#container h3 {
+  font-size: 5vw; /* Use vw to make it responsive */
+}
+
+#container a {
+  display: inline-block;
+  padding: 15px 15px;
+  color: white;
+  font-weight: bold;
+  font-size: .9em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  background-color: rgba($red, .9);
+  box-shadow: -7px 7px 0 rgba($blue, .7), -12px 12px 0 rgba($yellow, .8);
+  transition: all .2s ease;
+}
+
+#container a:hover {
+  box-shadow: -3px 3px 0 rgba($blue, .7), -6px 6px 0 rgba($yellow, .8);
+  transition: all .2s ease;
+}
+
+@media (max-width: 768px) {
+  #container h1 {
+    font-size: 15vw; /* Adjust font size for smaller screens */
+  }
+
+  #container h3 {
+    font-size: 6vw; /* Adjust font size for smaller screens */
+  }
+
+  #container a {
+    padding: 10px 10px; /* Adjust padding for smaller screens */
+    font-size: .8em; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  #container h1 {
+    font-size: 20vw; /* Adjust font size for smaller screens */
+  }
+
+  #container h3 {
+    font-size: 7vw; /* Adjust font size for smaller screens */
+  }
+
+  #container a {
+    padding: 8px 8px; /* Adjust padding for smaller screens */
+    font-size: .7em; /* Adjust font size for smaller screens */
+  }
+}

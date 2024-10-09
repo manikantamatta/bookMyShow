@@ -1,0 +1,24 @@
+<div *ngFor="let dateGroup of dateGroups" class="date-section">
+  <h3 class="date-header">
+    {{ dateGroup.date !== 'Unknown Date' ? (dateGroup.date | date: 'fullDate') : 'Date Not Available' }}
+  </h3>
+
+  <div *ngFor="let movie of dateGroup.movies" class="movie-section">
+    <h4 class="movie-title">{{ movie.movie_name }}</h4>
+
+    <div class="shows-container">
+      <div *ngFor="let show of movie.shows" class="show-time">
+        <button
+          mat-raised-button
+          class="show-button"
+          [matTooltip]="getSeatInfo(show)"
+          matTooltipPosition="above"
+          aria-label="Button displaying show timings and seat information"
+          (click)="onShowSelect(show)"
+        >
+          {{ show.start_time | date: 'shortTime' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

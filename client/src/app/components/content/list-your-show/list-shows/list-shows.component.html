@@ -1,0 +1,74 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="movie">Select Movie</label>
+        <select id="movie" class="form-control" [(ngModel)]="selectedMovieId" name="movieId" required>
+          <option *ngFor="let movie of movies" [value]="movie._id">{{ movie.name }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="cinema">Select Cinema</label>
+        <select id="cinema" class="form-control" [(ngModel)]="selectedCinemaId" name="cinemaId" required>
+          <option *ngFor="let cinema of cinemas" [value]="cinema.id">{{ cinema.name }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="date">Select Date</label>
+        <input type="date" id="date" class="form-control" [(ngModel)]="selectedDate" name="date" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Find Shows</button>
+    </form>
+  
+    <div *ngIf="showsData">
+      <div *ngFor="let show of showsData">
+        <h3>Screen {{ show.screen }}</h3>
+        <ul>
+          <li *ngFor="let showTime of show.shows">
+            {{ showTime.start_time | date:'shortTime' }} - {{ showTime.end_time | date:'shortTime' }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div *ngIf="showsData">
+        <div class="form-group">
+          <label for="screen">Enter Screen Number</label>
+          <input type="number" id="screen" class="form-control" [(ngModel)]="selectedScreen" name="screen" required>
+        </div>
+    </div>
+  
+    <div *ngIf="selectedScreen !== null">
+      <h3>Enter Show Details for Screen {{ selectedScreen }}</h3>
+      <form (ngSubmit)="saveShow()">
+        <div class="form-group">
+          <label for="start-time">Start Time</label>
+          <input type="datetime-local" id="start-time" class="form-control" [(ngModel)]="showStartTime" name="startTime" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="end-time">End Time</label>
+          <input type="datetime-local" id="end-time" class="form-control" [(ngModel)]="showEndTime" name="endTime" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="language">Select Language</label>
+          <select id="language" class="form-control" [(ngModel)]="selectedLanguage" name="language">
+            <option *ngFor="let lang of languages" [value]="lang">{{ lang }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="format">Select Format</label>
+          <select id="format" class="form-control" [(ngModel)]="selectedFormat" name="format">
+            <option *ngFor="let format of formats" [value]="format">{{ format }}</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Save Show</button>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,48 @@
+<div class="container my-5 text-center" *ngIf="!showPaymentGateway">
+    <h2>Book Tickets</h2>
+  
+    <!-- Iterate through each ticket category -->
+    <div *ngFor="let ticket of tickets" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ ticket.type }} Ticket</h5>
+        <p class="card-text">Price: ₹{{ ticket.price }}</p>
+  
+        <!-- Ticket Quantity Selection -->
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <button
+            class="btn btn-outline-secondary"
+            (click)="decreaseQuantity(ticket._id)"
+            [disabled]="!selectedTickets[ticket._id] || selectedTickets[ticket._id] === 0"
+          >
+            -
+          </button>
+          <span class="mx-3">{{ selectedTickets[ticket._id] || 0 }}</span>
+          <button
+            class="btn btn-outline-primary"
+            (click)="increaseQuantity(ticket._id)"
+            [disabled]="selectedTickets[ticket._id] >= ticket.quantity"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Proceed to Pay Button -->
+    <div class="my-3">
+      <button
+        class="btn btn-success"
+        (click)="goToPayment()"
+        [disabled]="totalAmount === 0"
+      >
+        Proceed to Pay ₹{{ totalAmount }}
+      </button>
+    </div>
+  </div>
+  
+  <!-- Child component to handle payment -->
+  <app-payment-gateway-event
+    *ngIf="showPaymentGateway"
+    [paymentDetails]="paymentDetails"
+  ></app-payment-gateway-event>
+  

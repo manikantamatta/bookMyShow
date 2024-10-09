@@ -1,0 +1,24 @@
+<div class="container-fluid content">
+    <div class="p-3">
+      <h3 *ngIf="location" class="mb-4">Cinemas in {{ location }}</h3> 
+      
+      <div class="row">
+        <!-- Iterate over the cinemas array to display each cinema -->
+        <div class="col-md-4 col-sm-6 col-12 mb-4" *ngFor="let cinema of cinemas">
+          <div class="card h-100" (click)="buyTicketsByCinema(cinema)">
+            <div class="card-body">
+              <p class="card-text">
+                <span class="fw-bold">{{ cinema.name }}</span><br>
+                {{ cinema.location.house_no }}, {{ cinema.location.street }},<br>
+                {{ cinema.location.area }}, {{ cinema.city }} - {{ cinema.location.pincode }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paginator -->
+      <mat-paginator [length]="totalCinemas" [pageSize]="limit" (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+  </div>
